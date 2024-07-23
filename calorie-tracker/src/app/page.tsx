@@ -1,21 +1,25 @@
-// app/page.js
 'use client';
 
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
-const exerciseData = [
+interface Exercise {
+  type: string;
+  caloriesPerMinute: number;
+}
+
+const exerciseData: Exercise[] = [
   { type: 'ウォーキング', caloriesPerMinute: 4 },
   { type: 'ジョギング', caloriesPerMinute: 10 },
   { type: 'サイクリング', caloriesPerMinute: 8 },
 ];
 
 const CalorieTracker = () => {
-  const [calories, setCalories] = useState('');
-  const [result, setResult] = useState(null);
+  const [calories, setCalories] = useState<string>('');
+  const [result, setResult] = useState<{ type: string; time: string }[] | null>(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!calories || isNaN(calories)) {
+    if (!calories || isNaN(Number(calories))) {
       alert('有効なカロリー数値を入力してください');
       return;
     }
@@ -32,7 +36,7 @@ const CalorieTracker = () => {
       <h1>カロリー消費トラッカー</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          カロリーの数値を入力してください:
+          カロリー数値を入力してください:
           <input
             type="text"
             value={calories}

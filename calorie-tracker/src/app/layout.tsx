@@ -1,4 +1,4 @@
-// app/layout.js
+// app/layout.tsx
 import './globals.css';
 
 export const metadata = {
@@ -6,9 +6,9 @@ export const metadata = {
   description: 'Calculate exercise time based on calorie intake',
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body>{children}</body>
     </html>
   );
